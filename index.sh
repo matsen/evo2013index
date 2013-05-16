@@ -32,7 +32,7 @@ HEADER
 </html>
 TRAILER
 
-    echo "<tr><td><a href=\"/$safew.html\">$safew</a></td></tr>" >> index.html
+    echo "<tr><td><a href=\"$safew.html\">$safew</a></td></tr>" >> index.html
 
 done
 
