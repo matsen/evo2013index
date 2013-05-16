@@ -25,7 +25,7 @@ for w in $(cat $htmlfile | grep '</td>' | grep -v '^<' | sed -e 's#</td>##' -e '
 <table width="800" border="0" cellspacing="0" cellpadding="0" valign="top">
 HEADER
 
-    grep -B5 -A2 "$(echo $w | sed -e 's/_/ /g')" $htmlfile | grep -v '^\-\-*' >> $safew.html
+    grep -B7 -A2 "$(echo $w | sed -e 's/_/ /g')" $htmlfile | grep -v '^\-\-*' >> $safew.html
 
     cat >> $safew.html <<TRAILER
 </body>
