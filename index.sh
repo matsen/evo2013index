@@ -27,7 +27,7 @@ HEADER
 
     grep -B5 -A2 "$(echo $w | sed -e 's/_/ /g')" $htmlfile | grep -v '^\-\-*' >> $safew.html
 
-    cat > $safew.html <<TRAILER
+    cat >> $safew.html <<TRAILER
 </body>
 </html>
 TRAILER
