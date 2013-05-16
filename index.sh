@@ -1,13 +1,13 @@
 htmlfile=pp.html
 
 cat > index.html <<HEADER
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
 <link href="http://www.evolutionmeeting.org/engine/botany.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<table width="800" border="0" cellspacing="0" cellpadding="0" valign="top">
+<table width="800" border="0" cellspacing="0" cellpadding="0">
 HEADER
 
 
@@ -16,18 +16,20 @@ for w in $(cat $htmlfile | grep '</td>' | grep -v '^<' | sed -e 's#</td>##' -e '
     safew=$(echo $w | sed -e 's#[/:,]#_#g')
     echo $safew
     cat > $safew.html <<HEADER
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=us-ascii" />
+<title>$safew</title>
 <link href="http://www.evolutionmeeting.org/engine/botany.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-<table width="800" border="0" cellspacing="0" cellpadding="0" valign="top">
+<table width="800" border="0" cellspacing="0" cellpadding="0">
 HEADER
 
     grep -B7 -A2 "$(echo $w | sed -e 's/_/ /g')" $htmlfile | grep -v '^\-\-*' >> $safew.html
 
     cat >> $safew.html <<TRAILER
+</table>
 </body>
 </html>
 TRAILER
@@ -37,6 +39,7 @@ TRAILER
 done
 
 cat >> index.html <<TRAILER
+</table>
 </body>
 </html>
 TRAILER
